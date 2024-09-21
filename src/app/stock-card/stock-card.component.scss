@@ -1,0 +1,134 @@
+// Main container for the stock cards
+.stock-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 15px;
+  background-color: #f5f5f5;
+}
+
+// Individual stock card
+.stock-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 130px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid #007bff;
+  position: relative;
+  overflow: hidden;
+
+  // Hover effect: scale and shadow
+  &:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  h2 {
+    color: #007bff;
+    font-size: 14px;
+    margin-bottom: 10px;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  p {
+    margin: 8px 0;
+    font-size: 10px;
+
+    &.price {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    &.change {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &.timestamp {
+      font-size: 9px;
+      color: #6c757d;
+    }
+  }
+
+  // Positive change styling
+  .positive {
+    color: #28a745; // Green color for positive change
+  }
+
+  // Negative change styling
+  .negative {
+    color: #dc3545; // Red color for negative change
+  }
+
+}
+
+// Background animation on card hover
+.stock-card::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 200px;
+  height: 200px;
+  background: rgba(0, 123, 255, 0.15);
+  border-radius: 50%;
+  transition: transform 0.6s ease;
+  z-index: -1;
+}
+
+.stock-card:hover::before {
+  transform: scale(1.8);
+}
+
+.data-item {
+  width: 100%; // Full width element
+  padding: 10px;
+  background-color: #ffcd11; // Initial background color
+  background: linear-gradient(to right, #ffcd11 0%, #ffcd11 0%, transparent 100%);
+  background-size: 200% 100%;  // Set background twice the width of the element
+  background-position: left;  // Initially start from the left
+  transition: background-position 0.5s ease-out;  // Transition for the background position
+
+  &:hover {
+    background-position: right; // On hover, background slides to the right
+  }
+}
+
+
+.animated-div {
+  padding: 20px 40px;
+  font-size: 18px;
+  color: black;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background-color: white; /* Initial background color is white */
+  cursor: pointer; /* Optional: Makes the div behave more like a button */
+  transition: background-color 0.5s ease-in-out; /* Smooth transition for background */
+}
+
+.animated-div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;  /* Start offscreen on the left */
+  width: 100%;
+  height: 100%;
+  background-color: #ffcd11;  /* Transition to this color */
+  z-index: -1;
+  transition: left 0.5s ease-in-out;
+}
+
+.animated-div:hover::before {
+  left: 0;  /* Slide background from left to right */
+}
+
+.animated-div:hover {
+  color: black; /* Optional: Keep text color same */
+}

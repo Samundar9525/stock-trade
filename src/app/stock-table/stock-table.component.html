@@ -1,0 +1,30 @@
+<div *ngIf="tableData.length; else loading" class="table-container">
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="tableData" class="mat-elevation-z8 dynamic-table">
+
+      <!-- Dynamic column definitions -->
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef
+            class="sticky-header">
+          {{ columnLabels[column] || column }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="column === 'timestamp'; else defaultCell">
+            {{ element[column] | date: 'MMM d, y, h:mm a' }}
+          </ng-container>
+          <ng-template #defaultCell>
+            {{ element[column] }}
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <!-- Header and Row -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelectRow(row)"></tr>
+    </table>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Loading data...</p>
+</ng-template>

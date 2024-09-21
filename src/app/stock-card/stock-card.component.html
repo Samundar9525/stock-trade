@@ -1,0 +1,20 @@
+<div class="stock-container" *ngIf="stocks.length">
+  <div class="stock-card" *ngFor="let stock of stocks" (click)="onSelectStock(stock)">
+    <h2>{{ stock.symbol }}</h2>
+    <p class="price">Price: ${{ stock.price }}</p>
+
+    <p class="change" [ngClass]="{'positive': stock.change > 0, 'negative': stock.change < 0}">
+      Change:
+      {{ stock.change }}
+      <span *ngIf="stock.change > 0">&#9650; <!-- Up Arrow --></span>
+      <span *ngIf="stock.change < 0">&#9660; <!-- Down Arrow --></span>
+    </p>
+
+    <p class="timestamp">Time: {{ stock.timestamp | date:'MMM d, y, h:mm a' }}</p>
+  </div>
+</div>
+
+<div *ngIf="!stocks.length">
+  <p>Loading stock data...</p>
+</div>
+
