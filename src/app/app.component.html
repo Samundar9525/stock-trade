@@ -1,4 +1,4 @@
-<div class="flex">
+<div class="flex" *ngIf="graphStockData.length > 0">
   <h1 class="header">Personal Stock View</h1>
 <app-stock-card (stockSelected)="onStockSelected($event)"></app-stock-card>
 </div>
@@ -10,7 +10,7 @@
       [displayedColumns]="columnsToDisplay"
       [columnLabels]="columnLabels"
     ></app-stock-table>
-    <app-stock-table
+    <app-stock-table *ngIf="graphStockData.length > 0"
       [tableData]="dummyStockData"
       [displayedColumns]="columnsToDisplay"
       [columnLabels]="columnLabel1"
