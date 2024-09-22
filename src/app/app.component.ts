@@ -80,7 +80,7 @@ export class AppComponent {
   }
 
   setupWebSocket(): void {
-    const socket = io('http://localhost:3000');
+    const socket = io('https://stock-trade-be.onrender.com/');
 
     socket.on('stockData', (data: Stock[]) => {
       this.graphStockData = data;

@@ -22,7 +22,7 @@ export class StockCardComponent implements OnInit {
 
   ngOnInit(): void {
     // Establish WebSocket connection to your server
-    const socket = io('http://localhost:3000'); // Replace with your actual WebSocket server URL
+    const socket = io('https://stock-trade-be.onrender.com/'); // Replace with your actual WebSocket server URL
 
     // Listen for stockData events from the server
     socket.on('stockData', (data: Stock[]) => {
